@@ -1,0 +1,164 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <link rel="stylesheet" href="style.css">
+    <title>Component Viewer</title>
+</head>
+
+<body>
+    <div class="h-svh w-screen flex flex-col overflow-hidden">
+        <div class="h-14 px-6 overflow-x-auto w-full bg-neutral-900 flex flex-row items-center gap-3 shrink-0">
+            <button
+                class="nav-btn bg-neutral-800 px-3 py-1 rounded-sm text-neutral-400 text-sm cursor-pointer whitespace-nowrap"
+                data-source="./01_3-coloumn-feed/index.html">
+                3 Column Feed
+            </button>
+            <button
+                class="nav-btn bg-neutral-800 px-3 py-1 rounded-sm text-neutral-400 text-sm cursor-pointer whitespace-nowrap"
+                data-source="./02_sidebar_content/index.html">
+                Sidebar Content
+            </button>
+            <button
+                class="nav-btn bg-neutral-800 px-3 py-1 rounded-sm text-neutral-400 text-sm cursor-pointer whitespace-nowrap"
+                data-source="./03_filter-grid/index.html">
+                Filter Grid
+            </button>
+            <button
+                class="nav-btn bg-neutral-800 px-3 py-1 rounded-sm text-neutral-400 text-sm cursor-pointer whitespace-nowrap"
+                data-source="./04_Map_List_Split/index.html">
+                Map List Split
+            </button>
+
+            <button
+                class="nav-btn bg-neutral-800 px-3 py-1 rounded-sm text-neutral-400 text-sm cursor-pointer whitespace-nowrap"
+                data-source="./05_DashBoard_KPI/index.html">
+                DashBoard_KPI
+            </button>
+
+            <button
+                class="nav-btn bg-neutral-800 px-3 py-1 rounded-sm text-neutral-400 text-sm cursor-pointer whitespace-nowrap"
+                data-source="./06_CRM_Record_Detail/index.html">
+                CRM Record Details
+            </button>
+
+            <button
+                class="nav-btn bg-neutral-800 px-3 py-1 rounded-sm text-neutral-400 text-sm cursor-pointer whitespace-nowrap"
+                data-source="./07_Data_Table/index.html">
+                Data Table
+            </button>
+
+            <button
+                class="nav-btn bg-neutral-800 px-3 py-1 rounded-sm text-neutral-400 text-sm cursor-pointer whitespace-nowrap"
+                data-source="./08_KanbanBoard/index.html">
+                KanBan Board
+            </button>
+
+            <button
+                class="nav-btn bg-neutral-800 px-3 py-1 rounded-sm text-neutral-400 text-sm cursor-pointer whitespace-nowrap"
+                data-source="./09_Chat_InterFace/index.html">
+                Chat Interface
+            </button>
+
+            <button
+                class="nav-btn bg-neutral-800 px-3 py-1 rounded-sm text-neutral-400 text-sm cursor-pointer whitespace-nowrap"
+                data-source="./10_Profile_Feed/index.html">
+                Profile Feed
+            </button>
+
+            <button
+                class="nav-btn bg-neutral-800 px-3 py-1 rounded-sm text-neutral-400 text-sm cursor-pointer whitespace-nowrap"
+                data-source="./11_Search_Result/index.html">
+                Search Result
+            </button>
+
+            <button
+                class="nav-btn bg-neutral-800 px-3 py-1 rounded-sm text-neutral-400 text-sm cursor-pointer whitespace-nowrap"
+                data-source="./12_Video_Player/index.html">
+                Video Player
+            </button>
+
+            <button
+                class="nav-btn bg-neutral-800 px-3 py-1 rounded-sm text-neutral-400 text-sm cursor-pointer whitespace-nowrap"
+                data-source="./13_ECommercePDP/index.html">
+                ECommerce PDP
+            </button>
+
+            <button
+                class="nav-btn bg-neutral-800 px-3 py-1 rounded-sm text-neutral-400 text-sm cursor-pointer whitespace-nowrap"
+                data-source="./14_Live_Score/index.html">
+                Live Score
+            </button>
+
+            <button
+                class="nav-btn bg-neutral-800 px-3 py-1 rounded-sm text-neutral-400 text-sm cursor-pointer whitespace-nowrap"
+                data-source="./15_Settings_Page/index.html">
+                Settings Page
+            </button>
+
+            <button
+                class="nav-btn bg-neutral-800 px-3 py-1 rounded-sm text-neutral-400 text-sm cursor-pointer whitespace-nowrap"
+                data-source="./16_Calender/index.html">
+                Calender
+            </button>
+
+            <button
+                class="nav-btn bg-neutral-800 px-3 py-1 rounded-sm text-neutral-400 text-sm cursor-pointer whitespace-nowrap"
+                data-source="./17_Form_Builder/index.html">
+                Form Builder
+            </button>
+
+        </div>
+        <div
+            class="bg-amber-100 border-b border-neutral-200 text-zinc-950 font-semibold tracking-tight py-1 text-sm w-full text-center">
+            <a href="https://www.google.com" target="_blank" rel="noopener noreferrer" class="" id="full-page">
+                Click Here to View Full Page
+            </a>
+        </div>
+        <iframe id="preview-iframe" class="flex-1 overflow-hidden w-full" src="" frameborder="0"></iframe>
+    </div>
+
+    <script>
+        // 1. Select elements
+        const iframe = document.getElementById('preview-iframe');
+        const buttons = document.querySelectorAll('.nav-btn');
+        const activeButtonIdx = 0;
+        const viewFullPage = document.getElementById('full-page')
+
+        // 2. Function to update source
+        const updateSource = (url) => {
+            iframe.src = url;
+            viewFullPage.href = url
+        };
+
+        // 3. Add click listeners to all buttons
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                const source = button.getAttribute('data-source');
+                updateSource(source);
+
+                // Remove active styles from all buttons
+                buttons.forEach(btn => {
+                    btn.classList.replace("bg-neutral-200", "bg-neutral-800")
+                    btn.classList.replace("text-neutral-800", "text-neutral-400")
+                });
+
+                // Add active styles to clicked button
+                button.classList.replace("bg-neutral-800", "bg-neutral-200")
+                button.classList.replace("text-neutral-400", "text-neutral-800")
+            });
+        });
+
+        // 4. Set initial source (loads the first button's source by default)
+        if (buttons.length > 0) {
+            updateSource(buttons[0].getAttribute('data-source'));
+            // Style the first button as active
+            buttons[0].classList.replace("bg-neutral-800", "bg-neutral-200")
+            buttons[0].classList.replace("text-neutral-400", "text-neutral-800")
+        }
+    </script>
+</body>
+
+</html>
